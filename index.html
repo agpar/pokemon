@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" >
+  <meta name="viewport" content="width=device-width, height=device-height" >
+  <title>Title</title>
+  <link rel="stylesheet" href="./css/CoveoFullSearch.css"/>
+  <link rel="stylesheet" href="./css/coveoextension.css"/>
+  <script class="coveo-script" src="https://static.cloud.coveo.com/searchui/v2.9659/2/js/CoveoJsSearch.js"
+          integrity="sha512-LcjwrWs4SAIxojwX0KgWjw6+xHn7UT238PNhKaBi82l7lDsz+3S7kEKwjks8QCQo5MWOUqriA5iWPJCJVYrxLA==" crossorigin="anonymous"></script>
+  <script src="js/coveo.extension.js"></script>
+  <script src="js/templates/templates.js"></script>
+  <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        Coveo.SearchEndpoint.configureCloudV2Endpoint(
+          "aparmentierpokemonr4knclra",
+          "xxb38e91d2-c395-46fc-a928-58fa20d45467",
+          "https://platformqa.cloud.coveo.com/rest/search"
+        );
+        Coveo.init(document.body);
+      })
+    </script>
+</head>
+<body id="search" class='CoveoSearchInterface' data-enable-history="true">
+
+<script id="template-for-folded-result" class="result-template" type="text/html">
+  <div class="coveo-result-frame">
+    <div class="coveo-result-row">
+      <div class="coveo-result-cell">
+        <div class="CoveoFieldValue" data-field="@pokemon_name"></div>
+      </div>
+    </div>
+  </div>
+</script>
+
+<div class="coveo-tab-section">
+  <a class="CoveoTab" data-id="All" data-caption="Pokemon"></a>
+</div>
+<div class='coveo-search-section'>
+  <div class="CoveoSettings"></div>
+  <div class="CoveoSearchbox" data-enable-omnibox="true"></div>
+  <div class="CoveoFoldingForThread"></div>
+  <div class="CoveoFieldSuggestions" data-field="@pokemon_name"></div>
+</div>
+<div class="coveo-main-section">
+  <div class="coveo-facet-column">
+    <div class="CoveoFacet" data-title="Type" data-field="@pokemon_type_multi" data-enable-toggling-operator='true' data-tab="All"></div>
+    <div class="CoveoFacet" data-title="Generation" data-field="@pokemon_gen2" data-tab="All"></div>
+    <div class="CoveoFacetSlider" data-title="Number" data-field="@pokemon_no" data-range-slider='true' data-tab="All" ></div>
+    <div class="CoveoFacetSlider" data-title="Weight (kg)" data-field="@pokemon_weight_kg" data-range-slider='true' data-graph="true" data-tab="All"></div>
+    <div class="CoveoFacet" data-title="Source" data-field="@source" data-tab="All"></div>
+  </div>
+  <div class="coveo-results-column">
+    <div class="CoveoShareQuery"></div>
+    <div class="CoveoExportToExcel"></div>
+    <div class="CoveoPreferencesPanel">
+      <div class="CoveoResultsPreferences"></div>
+      <div class="CoveoResultsFiltersPreferences"></div>
+    </div>
+    <div class="CoveoBreadcrumb"></div>
+    <div class="coveo-results-header">
+      <div class="coveo-summary-section">
+        <span class="CoveoQuerySummary"></span>
+        <span class="CoveoQueryDuration"></span>
+      </div>
+      <div class="coveo-result-layout-section">
+        <span class="CoveoResultLayout"></span>
+      </div>
+      <div class="coveo-sort-section">
+        <span class="CoveoSort" data-sort-criteria="relevancy" data-caption="Relevance"></span>
+        <span class="CoveoSort" data-sort-criteria="date descending,date ascending" data-caption="Date"></span>
+      </div>
+    </div>
+    <div class="CoveoHiddenQuery"></div>
+    <div class="CoveoDidYouMean"></div>
+    <div class="CoveoErrorReport"></div>
+
+    <div class="CoveoResultList" data-layout="list" data-wait-animation="fade" data-auto-select-fields-to-include="false">
+      <script id="myTemplate" class="result-template" type="text/html" data-field-filetype="html">
+        <div class="coveo-result-frame">
+          <div class="coveo-result-row">
+            <div class="coveo-result-cell" style="text-align:center">
+              <span class="CoveoImageFieldValue" data-field="@pokemon_icon" data-height="150"></span>
+              <div class="CoveoQuickview"></div>
+            </div>
+            <div class="coveo-result-cell" style="padding-left:15px;">
+              <div class="coveo-result-row">
+                <div class="coveo-result-cell">
+                  <a class="CoveoResultLink" style="font-size:18px;"></a><br><br>
+                  <span class="CoveoFieldValue" data-field="@pokemon_desc"></span><br><br>
+                  <span class="CoveoFieldValue" data-field="@pokemon_type_multi"></span><br><br>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="coveo-result-row">
+            <span class="CoveoResultFolding" data-result-template-id="template-for-folded-result"></span>
+          </div>
+        </div>
+      </script>
+    </div>
+    <div class="CoveoResultList" data-layout="card" data-wait-animation="fade" data-auto-select-fields-to-include="false"></div>
+    <div class="CoveoPager"></div>
+    <div class="CoveoLogo"></div>
+    <div class="CoveoResultsPerPage"></div>
+  </div>
+</div>
+</body>
+</html>
