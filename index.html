@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" >
   <meta name="viewport" content="width=device-width, height=device-height" >
-  <title>Title</title>
+  <title>Pokemon Search</title>
   <link rel="stylesheet" href="./css/CoveoFullSearch.css"/>
   <link rel="stylesheet" href="./css/coveoextension.css"/>
   <script class="coveo-script" src="https://static.cloud.coveo.com/searchui/v2.9659/2/js/CoveoJsSearch.js"
@@ -20,8 +20,29 @@
         Coveo.init(document.body);
       })
     </script>
+
+  <script>
+  const CustomFieldValue = (function(_super) {
+    __extends(CustomFieldValue, Coveo.Component);
+    function CustomFieldValue(element, options, bindings) {
+      _super.call(this, element, CustomFieldValue.ID, bindings);
+      this.type = 'CustomFieldValue';
+      Coveo.Component.bindComponentToElement(element, this);
+      this.element = element;
+      this.options = options;
+      this.bindings = bindings;
+    }
+  })(Coveo.Component);
+  </script>
+
 </head>
 <body id="search" class='CoveoSearchInterface' data-enable-history="true">
+
+<div style="text-align:center">
+  <img src="static/International_Pokémon_logo.svg" height="200">
+</div>
+
+<div class="CoveoAnalytics"></div>
 
 <script id="template-for-folded-result" class="result-template" type="text/html">
   <div class="coveo-result-frame">
@@ -33,9 +54,6 @@
   </div>
 </script>
 
-<div class="coveo-tab-section">
-  <a class="CoveoTab" data-id="All" data-caption="Pokemon"></a>
-</div>
 <div class='coveo-search-section'>
   <div class="CoveoSettings"></div>
   <div class="CoveoSearchbox" data-enable-omnibox="true"></div>
@@ -44,11 +62,10 @@
 </div>
 <div class="coveo-main-section">
   <div class="coveo-facet-column">
-    <div class="CoveoFacet" data-title="Type" data-field="@pokemon_type_multi" data-enable-toggling-operator='true' data-tab="All"></div>
-    <div class="CoveoFacet" data-title="Generation" data-field="@pokemon_gen2" data-tab="All"></div>
+    <div class="CoveoFacet" data-title="Type" data-field="@pokemon_type_multi" data-enable-toggling-operator='true'  data-sort-criteria="alphaascending"></div>
+    <div class="CoveoFacet" data-title="Generation" data-field="@pokemon_gen2" data-tab="All" data-sort-criteria="alphaascending"></div>
     <div class="CoveoFacetSlider" data-title="Number" data-field="@pokemon_no" data-range-slider='true' data-tab="All" ></div>
     <div class="CoveoFacetSlider" data-title="Weight (kg)" data-field="@pokemon_weight_kg" data-range-slider='true' data-graph="true" data-tab="All"></div>
-    <div class="CoveoFacet" data-title="Source" data-field="@source" data-tab="All"></div>
   </div>
   <div class="coveo-results-column">
     <div class="CoveoShareQuery"></div>
@@ -68,7 +85,7 @@
       </div>
       <div class="coveo-sort-section">
         <span class="CoveoSort" data-sort-criteria="relevancy" data-caption="Relevance"></span>
-        <span class="CoveoSort" data-sort-criteria="date descending,date ascending" data-caption="Date"></span>
+        <span class="CoveoSort" data-sort-criteria="@pokemon_no ascending" data-caption="Pokemon No"></span>
       </div>
     </div>
     <div class="CoveoHiddenQuery"></div>
@@ -88,7 +105,8 @@
                 <div class="coveo-result-cell">
                   <a class="CoveoResultLink" style="font-size:18px;"></a><br><br>
                   <span class="CoveoFieldValue" data-field="@pokemon_desc"></span><br><br>
-                  <span class="CoveoFieldValue" data-field="@pokemon_type_multi"></span><br><br>
+                  <b>Types: </b><span class="CoveoFieldValue" data-field="@pokemon_type_multi"></span><br><br>
+                  <span class="CoveoImageFieldValue" data-field="@pokemon_alt_images" data-height="50"></span>
                 </div>
               </div>
             </div>
@@ -99,11 +117,18 @@
         </div>
       </script>
     </div>
-    <div class="CoveoResultList" data-layout="card" data-wait-animation="fade" data-auto-select-fields-to-include="false"></div>
     <div class="CoveoPager"></div>
     <div class="CoveoLogo"></div>
     <div class="CoveoResultsPerPage"></div>
   </div>
 </div>
 </body>
+<script>
+var root = document.body;
+Coveo.$$(root).on('changeAnalyticsCustomData', function(e, args) {
+  if (args.type == 'ClickEvent'){
+    args.metaObject['pokemon_types_primary'] = args.resultData.raw.pokemon_type_multi[0]
+  }
+})
+</script>
 </html>
