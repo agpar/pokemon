@@ -49,6 +49,7 @@
     <div class="coveo-result-row">
       <div class="coveo-result-cell">
         <div class="CoveoFieldValue" data-field="@pokemon_name"></div>
+        <div class="CoveoImageFieldValue" data-field="@pokemon_icon" data-height="50"></div>
       </div>
     </div>
   </div>
@@ -57,7 +58,7 @@
 <div class='coveo-search-section'>
   <div class="CoveoSettings"></div>
   <div class="CoveoSearchbox" data-enable-omnibox="true"></div>
-  <div class="CoveoFoldingForThread"></div>
+  <div class="CoveoFolding"></div>
   <div class="CoveoFieldSuggestions" data-field="@pokemon_name"></div>
 </div>
 <div class="coveo-main-section">
@@ -89,7 +90,6 @@
       </div>
     </div>
     <div class="CoveoHiddenQuery"></div>
-    <div class="CoveoDidYouMean"></div>
     <div class="CoveoErrorReport"></div>
 
     <div class="CoveoResultList" data-layout="list" data-wait-animation="fade" data-auto-select-fields-to-include="false">
@@ -103,16 +103,16 @@
             <div class="coveo-result-cell" style="padding-left:15px;">
               <div class="coveo-result-row">
                 <div class="coveo-result-cell">
-                  <a class="CoveoResultLink" style="font-size:18px;"></a><br><br>
+                  <a class="CoveoResultLink" style="font-size:18px;"></a><br>
+                  <span class="CoveoFieldValue" data-field="@pokemon_species"></span><br><br>
                   <span class="CoveoFieldValue" data-field="@pokemon_desc"></span><br><br>
                   <b>Types: </b><span class="CoveoFieldValue" data-field="@pokemon_type_multi"></span><br><br>
-                  <span class="CoveoImageFieldValue" data-field="@pokemon_alt_images" data-height="50"></span>
+                  <span class="CoveoResultFolding" data-result-template-id="template-for-folded-result"
+                        data-one-result-caption='The only variant of this Pokemon.'></span>
+                  <!-- <span class="CoveoImageFieldValue" data-field="@pokemon_alt_images" data-height="50"></span> -->
                 </div>
               </div>
             </div>
-          </div>
-          <div class="coveo-result-row">
-            <span class="CoveoResultFolding" data-result-template-id="template-for-folded-result"></span>
           </div>
         </div>
       </script>
